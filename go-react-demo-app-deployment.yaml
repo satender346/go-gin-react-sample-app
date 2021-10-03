@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: demo-app-scripts-volume
         hostPath:
-          path: /var/tmp/go-gin-react-sample-app/
+          path: /var/jenkins_home/go-gin-react-sample-app/
           type: Directory
       containers:
       - name: go-react-app

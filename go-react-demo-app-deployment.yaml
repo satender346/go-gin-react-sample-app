@@ -17,7 +17,7 @@ spec:
       volumes:
       - name: demo-app-scripts-volume
         hostPath:
-          path: /home/sy336r/terraform/go-gin-react-sample-web-app
+          path: .
           type: Directory
       containers:
       - name: go-react-app

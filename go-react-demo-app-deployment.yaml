@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+  labels:
+    app: go-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-app
+  template:
+    metadata:
+      labels:
+        app: go-app
+    spec:
+      volumes:
+      - name: demo-app-scripts-volume
+        hostPath:
+          path: /home/sy336r/terraform/go-gin-react-sample-web-app
+          type: Directory
+      containers:
+      - name: go-react-app
+        image: golang:1.14
+        ports:
+        - containerPort: 7070
+        volumeMounts:
+          - mountPath: /demo-app-scripts
+            name: demo-app-scripts-volume
+        command:
+        - /bin/bash
+        - -c
+        - |
+          cd /demo-app-scripts
+          ./run.sh
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+         - 8.8.8.8
+      restartPolicy: Always
+
